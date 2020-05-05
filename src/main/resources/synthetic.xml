@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2020 XEBIALABS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="itop.Server" label="iTop: Server" extends="configuration.HttpConnection">
+        <property name="apiVersion" label="API Version" required="true" default="1.3" description="The API version" />
+    </type>
+
+    <type type="itop.Task" extends="xlrelease.PythonScript" virtual="true">
+        <property name="iconLocation" default="itop/itop_icon.png" hidden="true"/>
+        <property name="itopServer" category="input" label="Server" referenced-type="itop.Server"
+                  kind="ci"/>
+        <property name="taskColor" hidden="true" default="#da8139" />
+    </type>
+
+    <type type="itop.QueryIncidents" extends="itop.Task">
+        <property name="scriptLocation" default="itop/QueryIncidents.py" hidden="true"/>
+        <property name="query" kind="string" category="input" label="Query" required="true" default="SELECT Incident WHERE title LIKE '%'" description="Query Incidents" />
+        <property name="incidents" category="output" kind="map_string_string" required="false" label="Incidents" description="Key and title of found incidents"/>
+    </type>
+
+    <type type="itop.GetIncidentDetails" extends="itop.Task">
+        <property name="scriptLocation" default="itop/GetIncidentDetails.py" hidden="true"/>
+        <property name="key" kind="string" category="input" label="Key" required="true" description="Key of the incident" />
+        <property name="incident" category="output" kind="map_string_string" required="false" label="Incident" description="Details of the incident"/>
+    </type>
+
+    <type type="itop.QueryUserRequests" extends="itop.Task">
+        <property name="scriptLocation" default="itop/QueryUserRequests.py" hidden="true"/>
+        <property name="query" kind="string" category="input" label="Query" required="true" default="SELECT UserRequest WHERE title LIKE '%'" description="Query User Requests" />
+        <property name="userRequests" category="output" kind="map_string_string" required="false" label="UserRequests" description="key and title of found user requests"/>
+    </type>
+
+    <type type="itop.CreateUserRequest" extends="itop.Task">
+        <property name="scriptLocation" default="itop/CreateUserRequest.py" hidden="true"/>
+        <property name="title" kind="string" category="input" label="Title" required="true" description="Ttile for the user request" />
+        <property name="description" kind="string" category="input" label="Description" required="true" description="Description for the user request" />
+        <property name="comment" kind="string" category="input" label="Comment" required="true" description="Comment for the user request" />
+        <property name="org_id" kind="string" category="input" label="Orgnization Id" required="true" description="Id of the Organization" />
+        <property name="caller_id" kind="string" category="input" label="Caller Id" required="true" description="Id of the Caller" />
+        <property name="key" category="output" kind="string" required="false" label="Key" description="Key of the new User Request"/>
+    </type>
+
+    <type type="itop.GetUserRequestDetails" extends="itop.Task">
+        <property name="scriptLocation" default="itop/GetUserRequestDetails.py" hidden="true"/>
+        <property name="key" kind="string" category="input" label="Key" required="true" description="Key of the user request" />
+        <property name="userRequest" category="output" kind="map_string_string" required="false" label="User Request" description="Details of the user request"/>
+    </type>
+
+</synthetic>
