@@ -4,5 +4,8 @@ deploy:
   api_key:
     secure: g1AJa/6AKglHbaFd+3CtJZSQPqNoJCBNQS8EDcer7j0XVsu6bKMq55lhYYzrZWLO43z+RpkQVnlPRET+VcOKmE6Y2eHasYLPVPoLUN1b4+3jq///8SG//x4mzK5mpQrWkD50v1nfYBrCUbC9JdHpt4PZPt3YM9NhJDvsn15mCcykig6t4ndUCf7Ja/+iQbu1aiFH9mPXgGwLlgKKn9svHf/s945t+uLwqzfcQp7wwCfUAvuq5/3dCi1aRaAdt8fIkt6SNHH0JwHCay+xOTMCbhXtcLLDeZMnVzKm/NwRveI034b6JoWXSEEu/l7PW+RbXNHuqhakgZhizcT3X4Ruahx6zzF9u47csoGHvq7WnVoQzl2fbrvqHxsTV2rQ+ZJYdqgqBtimblwJrEEdS4+YHS/VCdMKSE2xYGeCAiWblGzW48OU3ytnjkcy0oqlFbxxtLNfsy2kymzPs8KVjHxT98aewzdkqdFVMHaSwalqWRuCHtCYGdLYEQrhp/4e9FA9vP1N4mFmIOMVJcmg356ziJ26YFDmrlFy2rTQw566WCA2XHTIFb7mzQVWqb1pRPYARrT6shYQwlxqFjN3XQACwgJU8B0PDj3ygmfjwA6+puWUIBKn+KTs5E8hNKMvX8frWcZBCNxXsp2V3GzxC37JLPh9nIhbCT5+IPJLKLiPGpg=
   file: "./build/libs/*"
+  skip_cleanup: true
   on:
     repo: xebialabs-community/xlr-itop-plugin
+    all_branches: true
+    tags: true
